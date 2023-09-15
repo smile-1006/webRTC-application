@@ -1,0 +1,12 @@
+#video{
+    display: grid;
+    /* exactly half of the container / 50%for each container */
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+}
+
+.video-player{
+    background-color: black;
+    width: 100%;
+    height: 500px;
+}
