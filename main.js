@@ -24,7 +24,11 @@ let createOffer = async () => {
     document.getElementById("user-2").srcObject = remoteStream
 
     //lets create an offer
-    
+    let offer = await peerConnection.createOffer()
+    await peerConnection.setLocalDescription(offer)
+
+    console.log("offer:",)
+
 }
 
 init()
