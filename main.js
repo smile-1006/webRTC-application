@@ -8,12 +8,10 @@ let peerConnection;
 let init = async() => {
     // this will request our  camera feeds and audio feeds from the user
     localStream= await navigator.mediaDevices.getUserMedia({video:true, audio:false})
-    //document.getElementById("user-1").srcObject =localStream
+    document.getElementById("user-1").srcObject =localStream
 
-    const videoElement = document.getElementById("user-1");
-    videoElement.srcObject= localStream;
-
-    videoElement.play();
+    createOffer();
+    
 }
 
 let createOffer = async () => {
@@ -23,11 +21,21 @@ let createOffer = async () => {
     remoteStream = new MediaStream()
     document.getElementById("user-2").srcObject = remoteStream
 
+    localStream.getTracks().forEach((track) => {
+        peerConnection.addTrack(track,localStream)
+    })
+
+    peerConnection.ontrack =(event) => {
+        event.streams[0].getTracks().forEach((track) => {
+            remoteStream.addTrack(track)
+        })
+    }
+
     //lets create an offer
     let offer = await peerConnection.createOffer()
     await peerConnection.setLocalDescription(offer)
 
-    console.log("offer:",)
+    console.log("offer:",offer);
 
 }
 
