@@ -34,6 +34,13 @@ let createOffer = async () => {
         peerConnection.addTrack(track, localStream)
     })
 
+    //lesion when peer are connected with easch other
+    peerConnection.ontrack = (event ) => {
+        event.streams[0].getTracks().forEach((track) =>{
+            remoteStream.addTrack(track)
+        })
+    }
+
 
     localStream.getTracks().forEach((track) => {
         peerConnection.addTrack(track,localStream)
