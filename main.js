@@ -52,6 +52,14 @@ let createOffer = async () => {
         })
     }
 
+    //generation ICE candidate  
+    peerConnection.onicecandidate = async (event) => {
+        if(event.candidate){
+            console.log("New ICE candidate:", event.candidate)
+        }
+    }
+    
+    
     //lets create an offer
     let offer = await peerConnection.createOffer()
     await peerConnection.setLocalDescription(offer)
