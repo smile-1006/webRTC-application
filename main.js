@@ -29,7 +29,10 @@ let createOffer = async () => {
     remoteStream = new MediaStream()
     document.getElementById("user-2").srcObject = remoteStream
     
-    
+    //looping all the audio and video to the remote peer connection
+    localStream.getTracks().forEach((track) => {
+        peerConnection.addTrack(track, localStream)
+    })
 
 
     localStream.getTracks().forEach((track) => {
