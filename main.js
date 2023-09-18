@@ -1,3 +1,8 @@
+let APP_ID ="c853791b139f4f66af3ef4b7c68499a6"
+
+let token =null;
+let uid = math.floor(Math.random()* 10000)
+
 // localStream :will be for local camera video feed abd micro phone audio
 let localStream;
 // once we are connented to another user this will be their camera and audio data 
