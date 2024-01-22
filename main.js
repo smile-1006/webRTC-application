@@ -4,7 +4,7 @@ let token =null;
 let uid = String(Math.floor(Math.random()* 10000))
 
 let client ;
-let channel;
+//let channel;
 
 // localStream :will be for local camera video feed abd micro phone audio
 let localStream;
