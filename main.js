@@ -4,7 +4,9 @@ let token =null;
 let uid = String(Math.floor(Math.random()* 10000))
 
 let client ;
-//let channel;
+let channel;
+
+
 
 // localStream :will be for local camera video feed abd micro phone audio
 let localStream;
@@ -26,8 +28,10 @@ let init = async() => {
     client = await AgoraRTM.createInstance(APP_ID)
     await client.login({uid, token})
     // this will request our  camera feeds and audio feeds from the user
-    channel = await client.createChannel('main')
-    await channel.join()    
+    channel =  client.createChannel('main')
+    await channel.join()
+    
+    channel.on('ChannelMessage',handleUserJoined)
     
     localStream= await navigator.mediaDevices.getUserMedia({video:true, audio:false})
     document.getElementById("user-1").srcObject =localStream
